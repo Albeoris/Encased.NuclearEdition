@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{747B819B-6743-454A-9224-480D0045C662}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Encased.NuclearEdition</RootNamespace>
+    <AssemblyName>Encased.NuclearEdition</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FrameworkPathOverride>C:\Program Files (x86)\Steam\steamapps\common\Encased\Encased_Data\Managed</FrameworkPathOverride>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\..\..\Users\Admin\AppData\LocalLow\Dark Crystal Games\Encased\Mods\NuclearEdition\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\..\..\Users\Admin\AppData\LocalLow\Dark Crystal Games\Encased\Mods\NuclearEdition\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="UnityEngine" />
+    <Reference Include="UnityEngine.CoreModule" />
+    <Reference Include="UnityEngine.TextRenderingModule" />
+    <Reference Include="UnityEngine.UI" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Patches\PatchAutoInputProcessor.cs" />
+    <Compile Include="Patches\PatchOpenContainerAbilityHandler.cs" />
+    <Compile Include="Patches\PatchSearchAbilityHandler.cs" />
+    <Compile Include="Patches\PatchWindow.cs" />
+    <Compile Include="Proxies\ProxyAbilityHandler.cs" />
+    <Compile Include="Shared\InteractiveRange.cs" />
+    <Compile Include="Shared\WindowManager.cs" />
+    <Compile Include="Shared\EntityFilters\ContainerUsefulness.cs" />
+    <Compile Include="Shared\EntityFilters\NearEntityFilter.cs" />
+    <Compile Include="Shared\Colors.cs" />
+    <Compile Include="Shared\UnionContainer.cs" />
+    <Compile Include="Patches\PatchGameModeProcessor.cs" />
+    <Compile Include="Shared\EntityFilters\UsefulContainerEntityFilter.cs" />
+    <Compile Include="Shared\InteractiveRangeVisualizer.cs" />
+    <Compile Include="Utils\HarmonyPrefix.cs" />
+    <Compile Include="Shared\SilhouetteMaker.cs" />
+    <Compile Include="Shared\SilhouetteColors.cs" />
+    <Compile Include="Utils\ExtensionMethodsList.cs" />
+    <Compile Include="Utils\Expressions.cs" />
+    <Compile Include="ModEntryPoint.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils\InstanceFieldAccessor.cs" />
+    <Compile Include="Utils\InstanceMethodAccessor.cs" />
+    <Compile Include="Utils\TypeCache.cs" />
+    <Compile Include="Utils\Reflection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony">
+      <Version>1.2.0.1</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"$(SolutionDir)References\pdb2mdb.exe" "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>
